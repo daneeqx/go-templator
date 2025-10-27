@@ -13,6 +13,7 @@
 - [Migrations](#migrations)
 - [Testing](#testing)
 - [Project Structure](#project-structure)
+- [Documentation](#documentation)
 - [Contacts](#contacts)
 
 ## Description
@@ -93,5 +94,16 @@ internal/           # Internal packages
 pkg/                # Public libraries
 configs/            # Configuration files
 scripts/            # Automation scripts
+docs/               # Documentation
 ...
 ```
+
+## Documentation
+
+Comprehensive documentation is available in the `docs/` directory:
+
+- **[Architecture](./docs/architecture.md)** - System architecture and design
+- **[Deployment Guide](./docs/deployment.md)** - Deployment and operations
+- **[API Documentation](./docs/api/)** - API specifications
+
+For quick start, see the [Build and Run](#build-and-run) section above.
