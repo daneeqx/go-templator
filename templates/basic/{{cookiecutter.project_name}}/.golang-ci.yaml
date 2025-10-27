@@ -1,0 +1,147 @@
+run:
+  timeout: 2m
+  relative-path-mode: gomod
+  modules-download-mode: readonly
+  allow-parallel-runners: true
+  allow-serial-runners: true
+  go: '1.24.1'
+  concurrency: 4
+
+output:
+  formats:
+    - format: colored-line-number
+      path: stdout
+  print-issued-lines: false
+  print-linter-name: true
+  sort-results: true
+  sort-order:
+    - linter
+    - severity
+    - file
+  show-stats: true
+
+
+linters:
+  disable-all: true
+  enable:
+    # All these linters support auto-fixing issues when run with --fix flag
+    - gosimple # Simplifies code
+    - govet # Reports suspicious constructs
+    - staticcheck # Go static analysis
+    - canonicalheader # Ensures canonical HTTP headers
+    - copyloopvar # Detects loop variable copy issues
+    - dupword # Finds duplicate words
+    - err113 # Checks error handling
+    - errorlint # Checks error wrapping
+    - exptostd # Replaces experimental packages with std ones
+    - fatcontext # Finds context issues
+    - gci # Formats imports
+    - ginkgolinter # Enforces Ginkgo/Gomega best practices
+    - gocritic # Reports suspicious constructs
+    - godot # Checks comment formatting
+    - gofmt # Formats code
+    - gofumpt # Formats code with additional rules
+    - goheader # Checks file headers
+    - goimports # Formats imports
+    - iface # Finds interface issues
+    - importas # Enforces import aliases
+    - intrange # Suggests integer range loops
+    - mirror # Finds incorrect bytes/strings usage
+    - misspell # Finds spelling errors
+    - nakedret # Finds naked returns
+    - nlreturn # Checks newlines before returns
+    - nolintlint # Checks nolint directives
+    - perfsprint # Suggests faster string conversions
+    - protogetter # Enforces proto getter usage
+    - revive # Fast, configurable linter
+    - stylecheck # Style checker
+    - tagalign # Aligns struct tags
+    - testifylint # Checks testify usage
+    - usestdlibvars # Suggests stdlib constants
+    - usetesting # Suggests testing package alternatives
+    - whitespace # Checks whitespace
+    - wsl # Enforces empty line rules
+
+    # All these linters doest not support auto-fixing
+    - decorder # Check declaration order and count of types, constants, variables and functions
+    - asciicheck # Check for non-ASCII identifiers in code
+    - bidichk # Check for dangerous unicode character sequences
+    - bodyclose # Check if HTTP response body is closed
+    - cyclop # Check function cyclomatic complexity
+    - dogsled # Check for too many blank identifiers (_)
+    - errname # Check error naming conventions
+    - forcetypeassert # Find forced type assertions
+    - goconst # Find repeated strings that could be constants
+    - gosec # Check for security issues
+    - makezero # Check for proper slice initialization
+    - nilerr # Check for returning nil with error
+    - lll # Check line length limit
+    - noctx # Find HTTP requests without context
+    - predeclared # Find code that shadows Go's predeclared identifiers
+    - promlinter # Check Prometheus metrics naming
+    - reassign # Check package variables reassignment
+    - spancheck # Check OpenTelemetry/Census spans usage
+    - unconvert # Remove unnecessary type conversions
+    - unparam # Reports unused function parameters
+
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - gosec
+        - cyclop
+
+linters-settings:
+  lll:
+    line-length: 130
+
+  testifylint:
+    disable:
+      - len
+      - bool-compare
+      - empty
+
+  gci:
+    sections:
+      - standard # Standard section: captures all standard packages.
+      - default # Default section: contains all imports that could not be matched to another section type.
+      - localmodule # Local module section: contains all local packages. This section is not present unless explicitly enabled.
+
+    custom-order: true
+
+  decorder:
+    dec-order:
+      - const
+      - var
+      - type
+      - func
+    ignore-underscore-vars: false
+    disable-dec-order-check: false
+    disable-init-func-first-check: false
+    disable-dec-num-check: false
+    disable-type-dec-num-check: true
+    disable-const-dec-num-check: false
+    disable-var-dec-num-check: false
+
+  wrapcheck:
+    extra-ignore-sigs:
+      - .CustomError(
+      - .SpecificWrap(
+    ignoreSigs:
+      - .Errorf(
+      - errors.New(
+      - errors.Unwrap(
+      - errors.Join(
+      - .Wrap(
+      - .Wrapf(
+      - .WithMessage(
+      - .WithMessagef(
+      - .WithStack(
+    ignoreSigRegexps:
+      - \.New.*Error\(
+    ignorePackageGlobs:
+      - encoding/*
+      - github.com/pkg/*
+    ignoreInterfaceRegexps:
+      - ^(?i)c(?-i)ach(ing|e)

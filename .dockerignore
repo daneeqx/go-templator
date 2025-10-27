@@ -1,0 +1,37 @@
+# Git
+.git
+.gitignore
+
+# Documentation
+README.md
+*.md
+ANALYSIS.md
+
+# Scripts (include when needed)
+scripts/
+
+# Templates
+templates/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+
+# Generated files
+.cookiecutter_replay
+

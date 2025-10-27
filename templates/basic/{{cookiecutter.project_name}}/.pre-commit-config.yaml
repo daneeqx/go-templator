@@ -1,0 +1,40 @@
+repos:
+  - repo: https://github.com/dnephin/pre-commit-golang
+    rev: v0.5.1
+    hooks:
+      - id: go-fmt               # Formats Go code
+      - id: go-imports           # Formats and organizes imports in Go
+      - id: go-build             # Checks if the Go code compiles
+
+  - repo: https://github.com/golangci/golangci-lint
+    rev: v1.64.8
+    hooks:
+      - id: golangci-lint        # Comprehensive linter for Go
+        args: [--timeout=2m, --fix, --verbose]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace  # Removes trailing whitespace
+      - id: end-of-file-fixer    # Ensures the file ends with a newline
+      - id: check-yaml           # Checks for valid YAML syntax
+      - id: check-added-large-files  # Warns about large files added to the commit
+        args: ['--maxkb=1024']
+      - id: check-merge-conflict   # Checks for merge conflicts
+      - id: check-json            # Checks for valid JSON syntax
+      - id: pretty-format-json    # Formats JSON files
+        args: ['--autofix', '--indent=2']
+      - id: check-toml           # Checks for valid TOML syntax
+      - id: detect-private-key   # Detects private keys in files
+      - id: check-case-conflict  # Checks for case conflicts
+
+  - repo: https://github.com/zricethezav/gitleaks
+    rev: v8.25.1
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.6.3
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
