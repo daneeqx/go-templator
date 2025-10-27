@@ -177,10 +177,6 @@ All templates are in `templates/basic/{{cookiecutter.project_name}}/`. Edit the 
 
 Contributions are welcome! Please read CONTRIBUTING.md for guidelines.
 
-## 📝 License
-
-MIT License - see LICENSE file for details.
-
 ## 🙋 Support
 
 For issues, questions, or contributions:
